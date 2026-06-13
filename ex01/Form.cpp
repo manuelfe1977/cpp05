@@ -5,9 +5,9 @@ Form::Form(const std::string &name,
 			const unsigned int &gradeRequiredToSign,
 			const unsigned int &gradeRequiredToExecute)
 			 : _name(name),
-			 _gradeRequiredToExecute(gradeRequiredToExecute),
+			 _isSigned(false),
 			 _gradeRequiredToSign(gradeRequiredToSign),
-			 _isSigned(false)
+			 _gradeRequiredToExecute(gradeRequiredToExecute)
 {
 	if (gradeRequiredToSign < 1)
 		throw Form::GradeTooHighException();
@@ -21,9 +21,10 @@ Form::Form(const std::string &name,
 
 Form::Form(const Form &form) :
 			_name(form._name),
-			_gradeRequiredToExecute(form._gradeRequiredToExecute),
+			_isSigned(form._isSigned),
 			_gradeRequiredToSign(form._gradeRequiredToSign),
-			_isSigned(form._isSigned){}
+			_gradeRequiredToExecute(form._gradeRequiredToExecute)
+			{}
 
 Form	&Form::operator=(const Form &form)
 {
