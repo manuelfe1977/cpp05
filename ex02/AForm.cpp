@@ -65,6 +65,14 @@ void	AForm::beSigned(Bureaucrat &bureaucrat)
 		throw Form::GradeTooLowException();
 }
 
+void	checkRequirements(const Bureaucrat &executor) const
+{
+	if (!_isSigned)
+		throw AForm::FormNotSignedException();
+	if (executor.getGrade() > _gradeRequiredToExecute)
+		throw AForm::GradeTooLowException();
+}
+
 std::ostream	&operator<<(std::ostream &os, Form &form)
 {
 	os << "Form name " << form.getName();

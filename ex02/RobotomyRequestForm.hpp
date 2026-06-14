@@ -2,6 +2,8 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
+#include <cstdlib>
+
 
 class RobotomyRequestForm : public AForm
 {
@@ -12,7 +14,7 @@ public:
 	RobotomyRequestForm(const RobotomyRequestForm &rrf);
 	RobotomyRequestForm	operator=(const RobotomyRequestForm &rrf);
 	~RobotomyRequestForm();
-
+	std::string getTarget();
 	virtual void	execute(const Bureaucrat &executor);
 };
 

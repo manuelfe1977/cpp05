@@ -17,13 +17,14 @@ private:
 public:
 	AForm(const std::string &name, const unsigned int &gradeRequiredToSign, const unsigned int &gradeRequiredToExecute);
 	AForm(const Form &form);
-	AForm	&operator=(const Form &form);
+	AForm			&operator=(const Form &form);
 	~AForm();
 	std::string		getName();
 	bool			getIsSigned();
 	unsigned int	getGradeRequiredToSign();
 	unsigned int	getGradeRequiredToExecute();
 	void			beSigned(Bureaucrat &bureaucrat);
+	void			checkRequirements(const Bureaucrat &executor) const;
 	virtual void	execute(const Bureaucrat &executor) const = 0;
 
 	class GradeTooHighException : public std::exception
@@ -49,6 +50,14 @@ public:
 		virtual const char*	what() const throw()
 		{
 			return "Formulario ya firmado con anterioridad.";
+		}
+	};
+	class FormNotSignedException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw()
+		{
+			return "El formulario no está firmado.";
 		}
 	};
 };
